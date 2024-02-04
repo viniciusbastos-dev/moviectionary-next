@@ -13,7 +13,7 @@ export async function GET(
             `https://api.themoviedb.org/3/trending/${type}/${timeframe}?page=1&language=${lang}&api_key=${process.env.NEXT_API_KEY}`
         );
 
-        return NextResponse.json(response.data);
+        return NextResponse.json(response.data.results);
     } catch (error) {
         if (axios.isAxiosError(error)) {
             const axiosError: AxiosError = error;
@@ -23,10 +23,7 @@ export async function GET(
                 { status: axiosError.response?.status }
             );
         } else {
-            return NextResponse.json(
-                { error: "Bad Request" },
-                { status: 500 }
-            );
+            return NextResponse.json({ error: "Bad Request" }, { status: 500 });
         }
     }
 }

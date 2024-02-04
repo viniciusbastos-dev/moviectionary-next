@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react";
 import { Media } from "@/@types/types";
 import * as S from "./styles";
