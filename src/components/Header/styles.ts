@@ -8,6 +8,10 @@ export const Container = styled.header`
     padding: 25px 40px;
 `;
 
+export const Title = styled.h1`
+
+`
+
 export const Logo = styled.img`
     height: 40px;
 `;
