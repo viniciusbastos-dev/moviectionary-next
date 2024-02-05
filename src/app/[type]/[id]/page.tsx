@@ -7,9 +7,9 @@ import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const Info = () => {
+    const [info, setInfo] = useState<MediaDetails>();
     const params = useParams<{ type: string; id: string }>();
     
-    const [info, setInfo] = useState<MediaDetails>();
     useEffect(() => {
         getInfo(params.type, params.id).then((response) => setInfo(response));
     }, [params]);

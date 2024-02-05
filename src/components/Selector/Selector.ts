@@ -5,7 +5,7 @@ interface ToggleButtonProps {
 }
 
 interface BtnIndicatorProps {
-    position: string;
+    $position: string;
 }
 
 export const FormBox = styled.div`
@@ -14,9 +14,7 @@ export const FormBox = styled.div`
     background: #fff;
 `;
 
-export const ButtonBox = styled.div`
-
-`;
+export const ButtonBox = styled.div``;
 
 export const ToggleButton = styled.button<ToggleButtonProps>`
     font-family: "Roboto", sans-serif;
@@ -32,10 +30,10 @@ export const ToggleButton = styled.button<ToggleButtonProps>`
 `;
 
 export const BtnIndicator = styled.div<BtnIndicatorProps>`
-    left: ${(props) => (props.position === "day" ? "0" : "109px")};
-    top: 0;
     position: absolute;
-    width: ${(props) => (props.position === "day" ? "109px" : "132px")};
+    top: 0;
+    left: ${(props) => (props.$position === "day" ? "0" : "109px")};
+    width: ${(props) => (props.$position === "day" ? "109px" : "132px")};
     height: 100%;
     background: #2a7ae4;
     border-radius: 30px;

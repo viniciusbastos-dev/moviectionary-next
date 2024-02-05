@@ -18,7 +18,7 @@ const Selector: React.FC<SelectorProps> = ({ data, setData }) => {
     return (
         <S.FormBox>
             <S.ButtonBox>
-                <S.BtnIndicator position={data} />
+                <S.BtnIndicator $position={data} />
                 <S.ToggleButton
                     onClick={leftClick}
                     selected={data === "day"}
