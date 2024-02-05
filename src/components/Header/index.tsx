@@ -7,7 +7,7 @@ const Header = () => {
         <S.Container>
             <Link href="/">
                 <S.Title>
-                    <S.Logo src="/logo.png" />
+                    <S.Logo src="/logo.png" alt="Logo do Moviectionary" />
                 </S.Title>
             </Link>
         </S.Container>
