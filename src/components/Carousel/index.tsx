@@ -51,7 +51,9 @@ const Carousel: React.FC<CarouselProps> = ({ data }) => {
 
   useEffect(() => {
     if (firstLoading) {
-      setFirstLoading(false);
+      setTimeout(() => {
+        setFirstLoading(false);
+      }, 1000);
     } else {
       getTrending(period).then((response) => setNewData(response));
     }
@@ -68,7 +70,7 @@ const Carousel: React.FC<CarouselProps> = ({ data }) => {
           <Slider {...sliderOptions}>
             {newData.map((item) => (
               <S.Item key={item.id}>
-                <MediaCard data={item} />
+                <MediaCard data={item} loading={firstLoading} />
               </S.Item>
             ))}
           </Slider>

@@ -4,19 +4,22 @@ import React from "react";
 import { Media } from "@/@types/types";
 
 interface MediaCardProps {
-    data: Media;
+  data: Media;
+  loading: boolean;
 }
 
-const MediaCard: React.FC<MediaCardProps> = ({ data }) => {
-    return (
-        <S.CardContainer>
-            <Link href={`/${data.media_type}/${data.id}`}>
-                <S.CardPoster src={data.poster_url} alt={data.title} />
-            </Link>
-            <S.CardTitle>{data.title}</S.CardTitle>
-            <S.CardDate>{data.release_date}</S.CardDate>
-        </S.CardContainer>
-    );
+const MediaCard: React.FC<MediaCardProps> = ({ data, loading }) => {
+  return loading ? (
+    <S.CardContainer loading={loading}></S.CardContainer>
+  ) : (
+    <S.CardContainer>
+      <Link href={`/${data.media_type}/${data.id}`}>
+        <S.CardPoster src={data.poster_url} alt={data.title} />
+      </Link>
+      <S.CardTitle>{data.title}</S.CardTitle>
+      <S.CardDate>{data.release_date}</S.CardDate>
+    </S.CardContainer>
+  );
 };
 
 export default MediaCard;
