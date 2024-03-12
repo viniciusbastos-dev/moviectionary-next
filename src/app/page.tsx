@@ -6,7 +6,7 @@ import Carousel from "@/components/Carousel";
 async function getData(): Promise<Media[]> {
   const res = await fetch(
     `https://moviectionary.vercel.app/api/trending/all/day?lang=pt-BR`,
-    { next: { revalidate: 1800 } }
+    { cache: "no-store" }
   );
   const data = await res.json();
   return data;
