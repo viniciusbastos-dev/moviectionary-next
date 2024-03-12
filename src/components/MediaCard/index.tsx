@@ -9,10 +9,8 @@ interface MediaCardProps {
 }
 
 const MediaCard: React.FC<MediaCardProps> = ({ data, loading }) => {
-  return loading ? (
-    <S.CardContainer loading={loading}></S.CardContainer>
-  ) : (
-    <S.CardContainer>
+  return (
+    <S.CardContainer loading={loading}>
       <Link href={`/${data.media_type}/${data.id}`}>
         <S.CardPoster src={data.poster_url} alt={data.title} />
       </Link>

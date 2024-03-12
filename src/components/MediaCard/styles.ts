@@ -10,7 +10,6 @@ export const CardContainer = styled.div<any>`
   ${(props) =>
     props.loading &&
     `
-  background-color: #ffffff90;
   width: 260px;
   height: 470px;
   border-radius: 8px;
