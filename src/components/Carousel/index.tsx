@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -10,42 +11,71 @@ import { getTrending } from "@/services/request";
 import { time } from "console";
 
 interface CarouselProps {
-    data: Media[];
+  data: Media[];
 }
 
 const Carousel: React.FC<CarouselProps> = ({ data }) => {
-    const [timeframe, setTimeframe] = useState<string>("day");
-    const [newData, setNewData] = useState<Media[]>(data);
-    const sliderOptions = {
-        infinite: false,
-        slidesToShow: 4,
-        slidesToScroll: 2,
-        dots: true,
-    };
+  const [firstLoading, setFirstLoading] = useState(true);
+  const [period, setPeriod] = useState<string>("day");
+  const [newData, setNewData] = useState<Media[]>(data);
 
-    useEffect(() => {
-        getTrending(timeframe).then((response) => setNewData(response));
-    }, [timeframe]);
+  const sliderOptions = {
+    infinite: false,
+    slidesToShow: 4,
+    slidesToScroll: 2,
+    dots: true,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 880,
+        settings: {
+          slidesToShow: 2,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          dots: false,
+        },
+      },
+    ],
+  };
 
-    return (
-        <>
-            <S.Container>
-                <S.Wrapper>
-                    <S.Title>Tendências</S.Title>
-                    <Selector data={timeframe} setData={setTimeframe} />
-                </S.Wrapper>
-                <S.Carousel>
-                    <Slider {...sliderOptions}>
-                        {newData.map((item) => (
-                            <S.Item key={item.id}>
-                                <MediaCard data={item} />
-                            </S.Item>
-                        ))}
-                    </Slider>
-                </S.Carousel>
-            </S.Container>
-        </>
-    );
+  useEffect(() => {
+    if (firstLoading) {
+      setFirstLoading(false);
+    } else {
+      getTrending(period).then((response) => setNewData(response));
+    }
+  }, [period]);
+
+  return (
+    <>
+      <S.Container>
+        <S.Wrapper>
+          <S.Title>Tendências</S.Title>
+          <Selector data={period} setData={setPeriod} />
+        </S.Wrapper>
+        <S.Carousel>
+          <Slider {...sliderOptions}>
+            {newData.map((item) => (
+              <S.Item key={item.id}>
+                <MediaCard data={item} />
+              </S.Item>
+            ))}
+          </Slider>
+        </S.Carousel>
+      </S.Container>
+    </>
+  );
 };
 
 export default Carousel;

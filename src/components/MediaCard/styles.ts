@@ -11,7 +11,9 @@ export const CardContainer = styled.div`
 `;
 
 export const CardPoster = styled.img`
-    width: 260px;
+    max-width: 240px;
+    max-height: 360px;
+    border-radius: 8px;
 `;
 
 export const CardTitle = styled.h3`
